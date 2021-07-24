@@ -1,7 +1,7 @@
 import os
 
 # for windows
-os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
+# os.add_dll_directory("C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.2/bin")
 
 import time
 from PIL import Image
@@ -39,7 +39,7 @@ def plot_image(image, title=""):
   plt.imshow(image)
   plt.axis("off")
   plt.title(title)
-  # plt.show() # to shart a window
+  plt.show() # to shart a window
 
 IMAGE_PATH = "original.png"
 
@@ -54,7 +54,7 @@ hr_image = tf.image.crop_to_bounding_box(hr_image, 0, 0, hr_size[0], hr_size[1])
 hr_image = tf.cast(hr_image, tf.float32)
 hr_image = tf.expand_dims(hr_image, 0)
 
-plot_image(tf.squeeze(hr_image), title="original")
+# plot_image(tf.squeeze(hr_image), title="original")
 
 t1 = time.time()
 # download and uncompress the model on
@@ -65,5 +65,5 @@ gen_image = model(hr_image)
 t2 = time.time()
 print('model process time:', t2 - t1)
 
-plot_image(tf.squeeze(gen_image), title="output")
+# plot_image(tf.squeeze(gen_image), title="output")
 save_image(tf.squeeze(gen_image), filename="output")
